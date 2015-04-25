@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import edu.tamut.util.Complex;
 
 
-public class NeuronLayer {
+public class NeuronLayer {//TODO: Unit tests
 	
 	private Neuron[] neurons;
 	
@@ -32,5 +32,9 @@ public class NeuronLayer {
 			}
 		}
 		return predictions;
+	}
+	
+	public int size(){
+		return neurons.length;
 	}
 }
