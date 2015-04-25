@@ -1,11 +1,12 @@
 package edu.tamut.neuralnetwork;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Random;
 
 import edu.tamut.util.Complex;
 
-public class Neuron{//TODO: Implement serializable
+public class Neuron implements Cloneable{//TODO: Implement serializable
 	
 	private Complex[] weights;
 	private static final Random RAND = new Random();
@@ -23,15 +24,15 @@ public class Neuron{//TODO: Implement serializable
 	}
 	
 	public Complex predict(Complex[] inputs) throws Exception{
-		if(inputs.length != weights.length){
-			throw new Exception(String.format("Incorrect number of inputs. Expected %d and got %d. The bias input (1.0 + 0.0i) might be missing.", weights.length, inputs.length));//TODO: Figure out what exception this should be.
+		if(inputs.length != weights.length-1){
+			throw new Exception(String.format("Incorrect number of inputs. Expected %d and got %d.", weights.length-1, inputs.length));//TODO: Figure out what exception this should be.
 		}
 		
-		Complex total = new Complex(0.0, 0.0);
 		Complex tmp;
+		Complex total = weights[0];//Bias weight is always multiplied by 1.0 + 0.0i = bias weight
 		
-		for(int i = 0; i < weights.length; ++i){
-			tmp = weights[i].times(inputs[i]);
+		for(int i = 1; i < weights.length; ++i){
+			tmp = weights[i].times(inputs[i-1]);
 			total = total.plus(tmp);
 		}
 		
@@ -42,5 +43,13 @@ public class Neuron{//TODO: Implement serializable
 		for(int i = 0; i < weights.length; ++i){
 			weights[i] = new Complex(RAND.nextDouble(), RAND.nextDouble());
 		}
+	}
+	
+	public int numberOfWeights(){
+		return this.weights.length;
+	}
+	
+	public Complex[] getWeights(){
+		return Arrays.copyOf(this.weights, this.weights.length);
 	}
 }

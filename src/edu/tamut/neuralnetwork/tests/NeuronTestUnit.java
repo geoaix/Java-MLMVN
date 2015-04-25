@@ -9,15 +9,25 @@ import edu.tamut.util.Complex;
 
 public class NeuronTestUnit {
 
-	/*@Test
-	public void test() {
-		fail("Not yet implemented");
-	}*/
+	@Test
+	public void RandomConstructor(){
+		Neuron neuron = new Neuron(10);
+		assertEquals(11, neuron.numberOfWeights());
+	}
 	
 	@Test
-	public void Neuron(){
+	public void InitializedConstructor(){
 		Complex[] weights = {new Complex(3.0,  2.0), new Complex(4.0,  3.0)};
-		Complex[] inputs = {new Complex(1.0, 0.0), new Complex(2.0, 1.0)};
+		Neuron neuron = new Neuron(weights);
+		assertArrayEquals(weights, neuron.getWeights());
+	}
+	
+	//TODO: Test failed constructors
+	
+	@Test
+	public void Prediction(){
+		Complex[] weights = {new Complex(3.0,  2.0), new Complex(4.0,  3.0)};
+		Complex[] inputs = {new Complex(2.0, 1.0)};
 		Neuron neuron = new edu.tamut.neuralnetwork.Neuron(weights);
 		try {
 			Complex prediction = neuron.predict(inputs);
@@ -27,5 +37,6 @@ public class NeuronTestUnit {
 			fail(e.getMessage());
 		}
 	}
-
+	
+	//TODO: Test failed prediction
 }

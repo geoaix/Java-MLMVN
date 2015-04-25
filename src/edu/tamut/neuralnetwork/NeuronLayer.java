@@ -1,6 +1,7 @@
 package edu.tamut.neuralnetwork;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import edu.tamut.util.Complex;
 
@@ -22,6 +23,13 @@ public class NeuronLayer {//TODO: Unit tests
 		}
 	}
 	
+	public NeuronLayer(Neuron[] neurons) throws Exception{
+		if(neurons.length < 1){
+			throw new Exception("The number of neurons should be greater than one.");//TODO: Custom exception?
+		}
+		this.neurons = neurons;
+	}
+	
 	public Complex[] predict(Complex[] inputs) throws Exception{
 		Complex[] predictions = new Complex[this.neurons.length];
 		for(int i = 0; i < this.neurons.length; ++i){
@@ -36,5 +44,9 @@ public class NeuronLayer {//TODO: Unit tests
 	
 	public int size(){
 		return neurons.length;
+	}
+	
+	public Neuron[] getNeurons(){
+		return Arrays.copyOf(this.neurons, this.neurons.length);
 	}
 }
