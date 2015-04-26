@@ -46,6 +46,7 @@ public class NeuronLayerTestUnit {
 			Neuron[] neurons = {new Neuron(firstNeuronWeights), new Neuron(secondNeuronWeights)};
 			NeuronLayer layer = new NeuronLayer(neurons);
 			Complex[] predictions = layer.predict(inputs);
+			
 			assertArrayEquals(new Complex[] {new Complex(8, 12),  new Complex(8, 12)}, predictions);
 		} catch (Exception e) {
 			e.printStackTrace();

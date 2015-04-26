@@ -9,7 +9,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({	NeuronTestUnit.class,
-				NeuronLayerTestUnit.class})
+				NeuronLayerTestUnit.class,
+				NeuralNetworkTestUnit.class})
 public class AllTests {
 
 }

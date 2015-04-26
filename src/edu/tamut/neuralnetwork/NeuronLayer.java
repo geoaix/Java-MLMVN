@@ -1,6 +1,5 @@
 package edu.tamut.neuralnetwork;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.tamut.util.Complex;
