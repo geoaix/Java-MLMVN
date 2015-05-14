@@ -1,6 +1,8 @@
 package edu.tamut.neuralnetwork;
 
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 import edu.tamut.util.Complex;
 
@@ -86,5 +88,10 @@ public class NeuralNetwork {
 		} catch (Exception e) {
 			throw new Exception(e);
 		}
+	}
+	
+	public void backprop(Complex[] errors){
+		//TODO: Implement
+		ListIterator<NeuronLayer> hiddenLayerIterator = hiddenLayers.listIterator(hiddenLayers.size());
 	}
 }

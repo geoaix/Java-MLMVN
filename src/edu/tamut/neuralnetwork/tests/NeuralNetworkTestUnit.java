@@ -43,4 +43,24 @@ public class NeuralNetworkTestUnit {
 			fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void Backprop(){
+		try{
+			Complex[] inputLayerWeights = {new Complex(3.0,  2.0), new Complex(4.0,  3.0)};
+			Complex[] outputLayerWeights = {new Complex(3.0,  2.0), new Complex(4.0,  3.0)};
+			Complex[] inputs = {new Complex(2.0, 1.0)};
+			
+			NeuralNetwork network = new NeuralNetwork(1, 1);
+			NeuronLayer inputLayer = new NeuronLayer(new Neuron[] {new Neuron(inputLayerWeights)});
+			network.setInputLayer(inputLayer);
+			
+			NeuronLayer hiddenLayer = new NeuronLayer(new Neuron[] {new Neuron(outputLayerWeights)});
+			network.addHiddenLayer(hiddenLayer);
+			
+			network.backprop(null);
+		}catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
 }
