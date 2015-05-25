@@ -38,5 +38,12 @@ public class NeuronTestUnit {
 		}
 	}
 	
+	@Test
+	public void Backprop(){
+		Complex[] weights = {new Complex(3.0,  2.0), new Complex(4.0,  3.0)};
+		Neuron neuron = new edu.tamut.neuralnetwork.Neuron(weights);
+		
+	}
+	
 	//TODO: Test failed prediction
 }
