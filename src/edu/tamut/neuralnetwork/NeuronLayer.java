@@ -41,6 +41,36 @@ public class NeuronLayer {//TODO: Unit tests
 		return predictions;
 	}
 	
+	/**
+	 * For layer "j", this method takes in the error from "j+1", 
+	 * corrects the weights based on this error,
+	 * then calculates and returns the errors for layer "j-1" 
+	 * @param errors from the proceeding layer (or the errors of the network in the case of the output layer)
+	 * @return
+	 */
+	public Complex[] backprop(Complex[] errors)
+	{
+		Complex[] nextErrors = new Complex[size()];
+		Complex complexSize = new Complex(size(), 0.0);
+		Complex[] tmpErrors;
+		
+		for(int neur = 0; neur < size(); ++neur)
+		{
+			for(int err=0; err < errors.length; ++err)
+			{
+				//Step 1: Correct weights
+				tmpErrors = neurons[neur].backprop(errors[err], complexSize);
+				for(int i = 0; i < nextErrors.length; ++i)
+				{
+					nextErrors[i] = nextErrors[i].plus(tmpErrors[i]);
+				}
+			}
+		}
+		
+		//Step 3: Return the errors for the previous layer
+		return nextErrors;
+	}
+	
 	public int size(){
 		return neurons.length;
 	}

@@ -58,7 +58,7 @@ public class NeuralNetworkTestUnit {
 			NeuronLayer hiddenLayer = new NeuronLayer(new Neuron[] {new Neuron(outputLayerWeights)});
 			network.addHiddenLayer(hiddenLayer);
 			
-			network.backprop(null);
+			//network.backprop(null);
 		}catch (Exception e) {
 			fail(e.getMessage());
 		}

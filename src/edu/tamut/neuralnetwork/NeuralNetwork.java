@@ -91,7 +91,16 @@ public class NeuralNetwork {
 	}
 	
 	public void backprop(Complex[] errors){
-		//TODO: Implement
 		ListIterator<NeuronLayer> hiddenLayerIterator = hiddenLayers.listIterator(hiddenLayers.size());
+		NeuronLayer currentLayer = null;
+		Complex[] nextErrors = errors;
+		//TODO: Calculate output layer error
+		while((currentLayer = hiddenLayerIterator.previous()) != null)
+		{
+			//TODO: hidden layer backprop
+			nextErrors = currentLayer.backprop(nextErrors);
+		}
+		//TODO: input layer backprop
+		inputLayer.backprop(nextErrors);
 	}
 }

@@ -38,6 +38,26 @@ public class Neuron implements Cloneable{//TODO: Implement serializable
 		return total;
 	}
 	
+	public Complex[] backprop(Complex error, Complex layerSize)
+	{
+		//Step 1: Calculate errors for the previous layer
+		Complex[] nextError = getErrorBackprop(error, layerSize);
+		//Step 2: Correct weights
+		//Step 3: Return the errors for the previous layer
+		return nextError;
+	}
+	
+	//Calculates the error that should be backpropagated
+	private Complex[] getErrorBackprop(Complex error, Complex layerSize)
+	{
+		Complex[] nextError = new Complex[this.weights.length-1];
+		for(int i = 1; i < weights.length; ++i)
+		{
+			nextError[i] = error.divides(weights[i]).divides(layerSize);			
+		}
+		return nextError; 
+	}
+	
 	public void randomizeWeights(){
 		for(int i = 0; i < weights.length; ++i){
 			weights[i] = new Complex(RAND.nextDouble(), RAND.nextDouble());
