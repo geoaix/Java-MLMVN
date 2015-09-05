@@ -60,6 +60,18 @@ public class NeuronLayer {//TODO: Unit tests
 	public NeuronLayer getNextLayer() {
 		return this.nextLayer;
 	}
+
+	public boolean isInputLayer() {
+		return (previousLayer == null);
+	}
+
+	public boolean isHiddenLayer() {
+		return (previousLayer != null && nextLayer != null);
+	}
+
+	public boolean isOutputLayer() {
+		return (nextLayer == null);
+	}
 	
 	public Complex[] predict(Complex[] inputs) throws Exception{
 		Complex[] predictions = new Complex[this.neurons.length];

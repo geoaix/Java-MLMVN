@@ -23,6 +23,11 @@ public class NeuralNetworkTestUnit {
 		//TODO remove?
 //		fail("Not implemented.");
 	}
+
+	@Test
+	public void AddingHiddenLayerShouldProperlyLinkLayers() {
+		fail("Not implemented.");
+	}
 	
 	@Test
 	public void Prediction(){

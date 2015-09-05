@@ -10,6 +10,7 @@ import javax.naming.OperationNotSupportedException;
 public class Neuron implements Cloneable{//TODO: Implement serializable
 	
 	private Complex[] weights;
+	private Complex latestOutput;
 	private static final Random RAND = new Random();
 
 	private NeuronLayer parent = null;
@@ -46,7 +47,7 @@ public class Neuron implements Cloneable{//TODO: Implement serializable
 			tmp = weights[i].times(inputs[i-1]);
 			total = total.plus(tmp);
 		}
-		
+		latestOutput = total;
 		return total;
 	}
 	

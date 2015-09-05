@@ -8,10 +8,11 @@ import edu.tamut.util.Complex;
 
 public class NeuralNetwork {
 	
-	private NeuronLayer inputLayer;
+	private NeuronLayer inputLayer;//TODO: Remove this variable and keep all layers in a single linked list.
 	private LinkedList<NeuronLayer> hiddenLayers;
+	private Complex latestOutput[];
 	
-	public NeuralNetwork(int numberOfNeurons, int numberOfInputs) throws Exception{//TODO: Unit tests
+	public NeuralNetwork(int numberOfNeurons, int numberOfInputs) throws Exception{//TODO: Unit tests?
 		try {
 			setInputLayer(numberOfNeurons, numberOfInputs);
 		} catch (Exception e) {
@@ -42,12 +43,18 @@ public class NeuralNetwork {
 	
 	public void addHiddenLayer(int numberOfNeurons) throws Exception{
 		try {
+			NeuronLayer previous = null;
+			NeuronLayer newLayer = null;
 			if(hiddenLayers.size() < 1){
-					hiddenLayers.add(new NeuronLayer(numberOfNeurons, inputLayer.size()));
+				previous = inputLayer;
+				newLayer = new NeuronLayer(numberOfNeurons, inputLayer.size());
 			}else{
-				NeuronLayer previous = hiddenLayers.getLast();
-				hiddenLayers.add(new NeuronLayer(numberOfNeurons, previous.size()));
+				previous = hiddenLayers.getLast();
+				newLayer = new NeuronLayer(numberOfNeurons, previous.size());
 			}
+			hiddenLayers.add(newLayer);
+			previous.setNextLayer(newLayer);
+			newLayer.setPreviousLayer(previous);
 		} catch (Exception e) {
 			throw new Exception(e);//TODO: Custom exception?
 		}
@@ -84,6 +91,7 @@ public class NeuralNetwork {
 			for(NeuronLayer layer : hiddenLayers){
 				output = layer.predict(output);
 			}
+			this.latestOutput = output;
 			return output;
 		} catch (Exception e) {
 			throw new Exception(e);
