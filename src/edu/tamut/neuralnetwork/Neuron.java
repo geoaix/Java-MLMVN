@@ -5,10 +5,14 @@ import java.util.Random;
 
 import edu.tamut.util.Complex;
 
+import javax.naming.OperationNotSupportedException;
+
 public class Neuron implements Cloneable{//TODO: Implement serializable
 	
 	private Complex[] weights;
 	private static final Random RAND = new Random();
+
+	private NeuronLayer parent = null;
 	
 	/**
 	 * @param numberOfInputs The number of inputs that will be passed to this Neuron. The number of weights is numberOfInputs + 1 since there is a bias weight.
@@ -20,6 +24,14 @@ public class Neuron implements Cloneable{//TODO: Implement serializable
 	
 	public Neuron(Complex[] weights){
 		this.weights = weights;
+	}
+
+	public void setParent(NeuronLayer parent) throws OperationNotSupportedException {
+		if(this.parent == null) {
+			this.parent = parent;
+		}else {
+			throw new OperationNotSupportedException("You cannot change the parent of a Neuron.");
+		}
 	}
 	
 	public Complex predict(Complex[] inputs) throws Exception{

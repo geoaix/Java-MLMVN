@@ -8,6 +8,8 @@ import edu.tamut.util.Complex;
 public class NeuronLayer {//TODO: Unit tests
 	
 	private Neuron[] neurons;
+//	private final NeuronLayer previousLayer;
+//	private final NeuronLayer nextLayer;
 	
 	public NeuronLayer(int numberOfNeurons, int numberOfInputs) throws Exception{
 		if(numberOfNeurons < 1){
@@ -19,6 +21,7 @@ public class NeuronLayer {//TODO: Unit tests
 		neurons = new Neuron[numberOfNeurons];
 		for(int i = 0; i < numberOfNeurons; ++i){
 			neurons[i] = new Neuron(numberOfInputs);
+			neurons[i].setParent(this);
 		}
 	}
 	
@@ -27,6 +30,9 @@ public class NeuronLayer {//TODO: Unit tests
 			throw new Exception("The number of neurons should be greater than one.");//TODO: Custom exception?
 		}
 		this.neurons = neurons;
+		for(Neuron neuron : neurons) {
+			neuron.setParent(this);
+		}
 	}
 	
 	public Complex[] predict(Complex[] inputs) throws Exception{
