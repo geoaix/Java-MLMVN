@@ -4,12 +4,14 @@ import java.util.Arrays;
 
 import edu.tamut.util.Complex;
 
+import javax.naming.OperationNotSupportedException;
+
 
 public class NeuronLayer {//TODO: Unit tests
 	
 	private Neuron[] neurons;
-//	private final NeuronLayer previousLayer;
-//	private final NeuronLayer nextLayer;
+	private NeuronLayer previousLayer = null;
+	private NeuronLayer nextLayer = null;
 	
 	public NeuronLayer(int numberOfNeurons, int numberOfInputs) throws Exception{
 		if(numberOfNeurons < 1){
@@ -33,6 +35,30 @@ public class NeuronLayer {//TODO: Unit tests
 		for(Neuron neuron : neurons) {
 			neuron.setParent(this);
 		}
+	}
+
+	public void setPreviousLayer(NeuronLayer previousLayer) throws OperationNotSupportedException {
+		if(this.previousLayer == null) {
+			this.previousLayer = previousLayer;
+		} else {
+			throw new OperationNotSupportedException("Cannot change a layer's previous layer.");
+		}
+	}
+
+	public NeuronLayer getPreviousLayer() {
+		return this.previousLayer;
+	}
+
+	public void setNextLayer(NeuronLayer nextLayer) throws OperationNotSupportedException {
+		if(this.nextLayer == null) {
+			this.nextLayer = nextLayer;
+		} else {
+			throw new OperationNotSupportedException("Cannot change a layer's next layer.");
+		}
+	}
+
+	public NeuronLayer getNextLayer() {
+		return this.nextLayer;
 	}
 	
 	public Complex[] predict(Complex[] inputs) throws Exception{

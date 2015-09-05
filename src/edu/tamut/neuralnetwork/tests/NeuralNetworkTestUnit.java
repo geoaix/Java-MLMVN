@@ -14,14 +14,14 @@ public class NeuralNetworkTestUnit {
 	
 	@Test
 	public void RandomConstructor(){
-		//TODO
+		//TODO remove?
 //		fail("Not implemented.");
 	}
 	
 	@Test
 	public void InitializedConstructor(){
-		//TODO
-		fail("Not implemented.");
+		//TODO remove?
+//		fail("Not implemented.");
 	}
 	
 	@Test
