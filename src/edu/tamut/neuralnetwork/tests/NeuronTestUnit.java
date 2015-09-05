@@ -5,6 +5,7 @@ import edu.tamut.neuralnetwork.Neuron;
 import org.junit.Test;
 
 import edu.tamut.util.Complex;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 public class NeuronTestUnit {
@@ -42,6 +43,8 @@ public class NeuronTestUnit {
 	public void Backprop(){
 		Complex[] weights = {new Complex(3.0,  2.0), new Complex(4.0,  3.0)};
 		Neuron neuron = new edu.tamut.neuralnetwork.Neuron(weights);
+
+		fail("Not implemented.");
 		
 	}
 	
